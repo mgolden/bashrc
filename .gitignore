@@ -6,3 +6,6 @@
 !.bashrc
 !.profile
 !.gitignore
+!bin/
+bin/*
+!bin/bells
