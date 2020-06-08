@@ -4,7 +4,7 @@
 
 # Set up the path
 # Path without . directory
-export NO_DOT_PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+export NO_DOT_PATH=~/.local/bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 # Current directory always goes last
 export PATH=$NO_DOT_PATH:.
 
