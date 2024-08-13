@@ -5,8 +5,8 @@
 # Set up the path
 # Path without . directory
 export NO_DOT_PATH=~/.local/bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
-# Current directory always goes last
-export PATH=$NO_DOT_PATH:.
+# If you want current directory in the path, it always goes last
+# export PATH=$NO_DOT_PATH:.
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -94,6 +94,13 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Start ssh-agent if it's not started. Purge keys every 24 hours.
+if ls /tmp/ssh-* 1> /dev/null 2>&1; then
+    export SSH_AUTH_SOCK="$(find /tmp/ssh-* -user $(whoami) -name 'agent*' | tail -n 1)"
+else
+    eval $(ssh-agent -t 24h)
+fi
+
 # Special changes
 
 # Make sure terminal is set to US english, UTF-8 encoding
@@ -107,4 +114,3 @@ if [ -f $localname ]; then
     . $localname
 fi
 unset localname
-
